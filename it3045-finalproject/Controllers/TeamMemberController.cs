@@ -38,11 +38,15 @@ namespace it3045_finalproject.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{id?}")]
+        public IActionResult GetById(int? id)
         {
             try
             {
+                if (id == null || id == 0)
+                {
+                    return Ok(_context.TeamMembers.Take(5).ToList());
+                }
                 var member = _context.TeamMembers.Find(id);
                 if (member == null) return NotFound();
                 return Ok(member);

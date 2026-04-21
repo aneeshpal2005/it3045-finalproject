@@ -24,9 +24,13 @@ namespace it3045_finalproject.Controllers
             return Ok(_context.ChipotleMenus.ToList());
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{id?}")]
+        public IActionResult GetById(int? id)
         {
+            if (id == null || id == 0)
+            {
+                return Ok(_context.ChipotleMenus.Take(5).ToList());
+            }
             var item = _context.ChipotleMenus.Find(id);
             if (item == null) return NotFound();
             return Ok(item);

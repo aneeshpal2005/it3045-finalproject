@@ -23,9 +23,13 @@ namespace it3045_finalproject.Controllers
             return Ok(_context.MicrosoftServices.ToList());
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{id?}")]
+        public IActionResult GetById(int? id)
         {
+            if (id == null || id == 0)
+            {
+                return Ok(_context.MicrosoftServices.Take(5).ToList());
+            }
             var svc = _context.MicrosoftServices.Find(id);
             if (svc == null) return NotFound();
             return Ok(svc);

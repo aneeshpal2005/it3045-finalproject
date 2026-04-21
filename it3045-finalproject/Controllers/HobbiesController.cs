@@ -29,9 +29,13 @@ namespace it3045_finalproject.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{id?}")]
+        public IActionResult GetById(int? id)
         {
+            if (id == null || id == 0)
+            {
+                return new OkObjectResult(_context.Hobbies.Take(5).ToList());
+            }
             var hobby = _context.Hobbies.Find(id);
             if (hobby == null) return new NotFoundResult();
             return new OkObjectResult(hobby);
