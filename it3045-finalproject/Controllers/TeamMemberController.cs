@@ -19,7 +19,6 @@ namespace it3045_finalproject.Controllers
         }
 
         [HttpGet(Name = "GetTeamMembers")]
-        [Route("/")]
         public IActionResult Get()
         {
             try

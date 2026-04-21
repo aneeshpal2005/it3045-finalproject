@@ -18,7 +18,6 @@ namespace it3045_finalproject.Controllers
         }
 
         [HttpGet(Name = "GetChipotleMenus")]
-        [Route("/ChipotleMenus")]
         public IActionResult Get()
         {
             return Ok(_context.ChipotleMenus.ToList());
